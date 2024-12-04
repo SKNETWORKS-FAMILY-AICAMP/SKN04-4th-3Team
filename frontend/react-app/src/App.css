@@ -1,0 +1,167 @@
+/* App.css */
+.app {
+  height: 100vh;
+  background-color: #ffffff;
+}
+
+.chat-container {
+  display: flex;
+  height: 100%;
+}
+
+.sidebar {
+  width: 260px;
+  background-color: #202123;
+  padding: 15px;
+  color: white;
+}
+
+.new-chat {
+  width: 100%;
+  padding: 10px;
+  background-color: #343541;
+  border: 1px solid #565869;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.messages-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.message-row {
+  display: flex;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.message-row.user {
+  justify-content: flex-end;
+}
+
+.message-row.assistant {
+  background-color: flex-start;
+}
+
+.message-content {
+  display: flex;
+  gap: 20px;
+  max-width: 80%;
+}
+
+.user .message-content {
+  flex-direction: row-reverse;
+}
+
+.assistant .message-content {
+  flex-direction: row;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #e1e1e1;
+}
+
+.message-bubble {
+  padding: 12px 16px;
+  border-radius: 15px;
+  line-height: 1.5;
+  position: relative;
+  max-width: 100%;
+}
+
+.user .message-bubble {
+  background-color: #565869;
+  color: white;
+  border-radius: 15px 15px 0 15px;
+  margin-right: 8px;
+}
+
+.assistant .message-bubble {
+  background-color: #f0f0f0;
+  color: #000;
+  border-radius: 15px 15px 15px 0;
+  margin-left: 8px;
+}
+
+.input-container {
+  padding: 20px;
+  border-top: 1px solid #e5e5e5;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  background-color: #ffffff;
+}
+
+.message-input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.send-button {
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.send-button:hover {
+  background-color: #f5f5f5;
+}
+
+/* App.css에 추가할 스타일 */
+.chat-history {
+  margin-top: 10px;
+  overflow-y: auto;
+}
+
+.history-item {
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  color: #ffffff;
+  border-radius: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history-item:hover {
+  background-color: #343541;
+}
+
+.history-item.active {
+  background-color: #343541;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-history {
+  flex-grow: 1;
+  overflow-y: auto;
+}
