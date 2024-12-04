@@ -2,6 +2,8 @@ import React, { useState, useCallback } from "react";
 // import { ReactTyped } from "react-typed";
 import "./App.css";
 
+const API_URL = `${window.location.protocol}//${window.location.host}/api/chat/`;
+
 const App = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -26,7 +28,7 @@ const App = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/api/chat/', {
+      const response = await fetch(API_URL,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
