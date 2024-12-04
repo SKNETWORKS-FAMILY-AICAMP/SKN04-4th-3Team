@@ -19,7 +19,7 @@ load_dotenv()
 chroma_db = initialize_vector_store()
 
 # YAML 파일에서 프롬프트 불러오기
-with open('prompts.yaml', 'r', encoding='utf-8') as file:
+with open(os.path.abspath('chatapi/chatbot/prompts.yaml'), 'r', encoding='utf-8') as file:
     prompts = yaml.safe_load(file)
 
 def get_session_history(session_store, session_ids: str) -> BaseChatMessageHistory:

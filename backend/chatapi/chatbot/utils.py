@@ -1,14 +1,4 @@
-import streamlit as st
 import os
-
-def print_messages():
-    if "messages" in st.session_state and len(st.session_state['messages']) > 0:
-        for chat_message in st.session_state['messages']:
-            st.chat_message(
-                chat_message['message'].role,
-                avatar=chat_message['avatar']
-            ).write(chat_message['message'].content)
-
 
 def format_docs(docs):
     formatted_results = []

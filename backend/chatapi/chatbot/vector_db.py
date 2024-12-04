@@ -37,8 +37,8 @@ def data_cleaning(documents):
     return filtered_documents
 
 def build_vector_store():
-    folder_path = './data'
-
+    # folder_path = './data'
+    folder_path = os.path.abspath('./chatapi/chatbot/data')
     # 임베딩 모델 설정
     embeddings = OpenAIEmbeddings(model='text-embedding-3-small')
     documents = load_data(folder_path)
