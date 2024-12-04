@@ -17,9 +17,9 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from .views import ChatBotView, chatgpt_response
+from .views import ChatBotView #, chatgpt_response
 
 urlpatterns = [
     path('chat/', ChatBotView.as_view(), name='chatbot'),
-    path('chat2/' , chatgpt_response.as_view(), name='chatgpt_response'),        
+    # path('chat2/' , chatgpt_response.as_view(), name='chatgpt_response'),        
 ]
