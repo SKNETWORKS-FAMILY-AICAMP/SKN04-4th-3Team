@@ -1,86 +1,80 @@
-import React, { useState, useEffect } from "react";
-import { ReactTyped } from "react-typed";
+import React, { useState, useCallback } from "react";
+// import { ReactTyped } from "react-typed";
 import "./App.css";
 
 const App = () => {
   const [messages, setMessages] = useState([]);
-  const [chatHistory, setChatHistory] = useState([]);
-  const [currentChatId, setCurrentChatId] = useState(null);
   const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const createNewChat = () => {
-    const newChatId = Date.now();
-    setChatHistory([
-      { id: newChatId, title: "New Chat", messages: [] },
-      ...chatHistory
-    ]);
-    setCurrentChatId(newChatId);
-    setMessages([]);
-  };
-
-  const handleSendMessage = (e) => {
+  const handleSendMessage = useCallback(async (e) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    const trimmedInput = input.trim();
+    
+    if (!trimmedInput) return;
 
-    const newMessages = [
-      ...messages,
-      { text: input, isUser: true },
-      { text: `${input}에 대한 응답입니다.`, isUser: false }
-    ];
-    
-    setMessages([
-      ...messages,
-      { text: input, isUser: true },
-      { text: `${input}에 대한 응답입니다.`, isUser: false }
-    ]);
-    setMessages(newMessages);
-    
-    // 채팅 히스토리 업데이트
-    setChatHistory(prevHistory =>
-      prevHistory.map(chat => 
-        chat.id === currentChatId 
-          ? { ...chat, messages: newMessages, title: input.slice(0, 30) }
-          : chat
-      )
-    );
+    // 사용자 메시지 추가
+    const userMessage = { 
+      id: Date.now(), 
+      text: trimmedInput, 
+      isUser: true 
+    };
+
+    // 메시지 상태 업데이트
+    setMessages(prevMessages => [...prevMessages, userMessage]);
     setInput("");
-  };
+    setIsLoading(true);
 
-  const loadChat = (chatId) => {
-    const chat = chatHistory.find(c => c.id === chatId);
-    if (chat) {
-      setMessages(chat.messages);
-      setCurrentChatId(chatId);
-    }
-  };
+    try {
+      const response = await fetch('http://192.168.0.21:8000/api/chat/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: trimmedInput })
+      });
 
-  useEffect(() => {
-    if (!currentChatId && chatHistory.length === 0) {
-      createNewChat();
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // 봇 메시지 추가
+      const botMessage = { 
+        id: Date.now() + 1, 
+        text: data.bot_response, // 서버 응답의 bot_response 필드 사용
+        isUser: false 
+      };
+
+      // 메시지 상태 최종 업데이트
+      setMessages(prevMessages => [...prevMessages, botMessage]);
+
+    } catch (error) {
+      console.error("Error details:", error);
+      
+      const errorMessage = { 
+        id: Date.now(), 
+        text: `통신 오류: ${error.message}`, 
+        isUser: false 
+      };
+
+      setMessages(prevMessages => [...prevMessages, errorMessage]);
+    } finally {
+      setIsLoading(false);
     }
-  }, []);
+  }, [input]);
 
   return (
     <div className="app">
       <div className="chat-container">
-        <div className="sidebar">
-        <button className="new-chat" onClick={createNewChat}>
-            + New Chat
-          </button>
-          <div className="chat-history">
-            {chatHistory.map((chat) => (
-              <div
-                key={chat.id}
-                className={`history-item ${currentChatId === chat.id ? 'active' : ''}`}
-                onClick={() => loadChat(chat.id)} > {chat.title || "New Chat"}
-              </div>
-            ))}
-          </div>
-        </div>
         <div className="main-content">
           <div className="messages-list">
-            {messages.map((message, index) => (
-              <div key={index} className={`message-row ${message.isUser ? 'user' : 'assistant'}`}>
+            {messages.map((message) => (
+              <div 
+                key={message.id} 
+                className={`message-row ${message.isUser ? 'user' : 'assistant'}`}
+              >
                 <div className="message-content">
                   <div className="avatar">
                     {message.isUser ? '👤' : '🤖'}
@@ -91,16 +85,33 @@ const App = () => {
                 </div>
               </div>
             ))}
+            
+            {isLoading && (
+              <div className="message-row assistant loading">
+                <div className="message-content">
+                  <div className="avatar">🤖</div>
+                  <div className="message-bubble">
+                    답변 생성 중...
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
+          
           <form className="input-container" onSubmit={handleSendMessage}>
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Send a message..."
+              placeholder="메시지를 입력하세요..."
               className="message-input"
+              disabled={isLoading}
             />
-            <button type="submit" className="send-button">
+            <button 
+              type="submit" 
+              className="send-button"
+              disabled={isLoading}
+            >
               ➤
             </button>
           </form>

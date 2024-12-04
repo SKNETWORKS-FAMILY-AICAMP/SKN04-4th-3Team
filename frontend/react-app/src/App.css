@@ -12,7 +12,7 @@
 .sidebar {
   width: 260px;
   background-color: #202123;
-  padding: 10px;
+  padding: 15px;
   color: white;
 }
 
@@ -43,32 +43,61 @@
 .message-row {
   display: flex;
   padding: 20px;
-  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 10px;
+}
+
+.message-row.user {
+  justify-content: flex-end;
 }
 
 .message-row.assistant {
-  background-color: #f7f7f8;
+  background-color: flex-start;
 }
 
 .message-content {
   display: flex;
   gap: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  width: 100%;
+  max-width: 80%;
+}
+
+.user .message-content {
+  flex-direction: row-reverse;
+}
+
+.assistant .message-content {
+  flex-direction: row;
 }
 
 .avatar {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+  background-color: #e1e1e1;
 }
 
 .message-bubble {
-  flex-grow: 1;
+  padding: 12px 16px;
+  border-radius: 15px;
   line-height: 1.5;
+  position: relative;
+  max-width: 100%;
+}
+
+.user .message-bubble {
+  background-color: #565869;
+  color: white;
+  border-radius: 15px 15px 0 15px;
+  margin-right: 8px;
+}
+
+.assistant .message-bubble {
+  background-color: #f0f0f0;
+  color: #000;
+  border-radius: 15px 15px 15px 0;
+  margin-left: 8px;
 }
 
 .input-container {
