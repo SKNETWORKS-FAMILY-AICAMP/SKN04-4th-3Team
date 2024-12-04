@@ -8,9 +8,9 @@
 	<img src="https://i.pinimg.com/236x/52/33/cf/5233cf1dfa7cb3ddeee3bb286c11f3f8.jpg" width="195" height="195"/>
 </p>
 
-|  &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; 🐶 박화랑  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 🐙고유림  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 🐻김문수  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |     &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 😺신원영  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;   | |
+|  &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; 🐶 박화랑(팀장) &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 🐙고유림  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 🐻김문수  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |     &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 😺신원영  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;   | |
 |------------------------------------------|--------------------------------------|------------------------------------------|-----------------------------------|------------------------------------------|
-| **팀장, streamlit, RAG** | **README, 아키텍처 디자인 및 문서작업** | **RAG(prompt 설계), 아키텍처 설계** | **RAG(prompt 설계), vector DB(함수화)** |
+| **요구사항 정의서, 화면설계서, README** | **Frontend (React)** | **Backend(Django)** | **Backend(Django)** |
 
 <br>
 <br>
@@ -32,16 +32,20 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 <br>
 
 ## 📌 요구사항 정의서
-- 
+<img src="./images/요구사항정의서.png"/>
 
-<br>
 <br>
 
 ## 📌 화면 설계서
+<img src="./images/화면설계서.png"/>
+<br>
+<br>
 
--
-<br>
-<br>
+## ✏️ Model Architecture
+
+<img src="./images/ModelArchitecture.png">
+
+## 🌲 폴더 트리
 
 
 ## 📌 기능
@@ -190,18 +194,7 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 <br>
 <br>
 
-## ✏️ Model Architecture
-- PDF → Chroma 벡터화 → Chroma → LangChai ↔ OpenAI
 
-<br>
 
-- 사용자 질문 → Streamlit → LangChain → OpenAI → LangChain → Streamlit → 사용자
-<br>
-<br>
 
-<img src="https://cdn.discordapp.com/attachments/1271398698596696117/1306148317075607573/image.png?ex=67359ce9&is=67344b69&hm=9948c91cb42202fcc932572237ba3965db09ffb8359d2758255dd4bb804c6aae&">
-
-<br> 폴더트리 <br>
-
-<img src="./image/tree.png">
 
