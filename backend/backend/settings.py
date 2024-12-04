@@ -84,10 +84,10 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 DATABASES = {
        'default': {
-           'ENGINE': 'django.db.backends.postgresql',
-           'NAME': os.environ.get('POSTGRES_DB'),
-           'USER': os.environ.get('POSTGRES_USER'),
-           'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+           'ENGINE': 'django.db.backends.postgresql', 
+           'NAME': os.environ.get('POSTGRES_DB', 'mydatabase'),
+           'USER': os.environ.get('POSTGRES_USER', 'myuser'),
+           'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'mypassword'),
            'HOST': 'db',  # Docker Compose 서비스 이름
            'PORT': '5432',
        }
