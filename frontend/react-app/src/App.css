@@ -24,10 +24,11 @@ body, html {
   position: fixed;
   top: 0;
   z-index: 1000;
+  height: 100px; 
 }
 
 .logo {
-  max-height: 100px;
+  max-height: 90px;
   padding-left: 10px;
 }
 
@@ -37,13 +38,13 @@ body, html {
   flex-direction: column;
   width: 100%;
   max-width: 900px; 
-  margin-top: calc(45px + 10px);
+  margin-top: 110px; 
 }
 
 .main-content {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - (40px + 10px));
+  height: calc(100vh - 110px);
 }
 
 .messages-list {
