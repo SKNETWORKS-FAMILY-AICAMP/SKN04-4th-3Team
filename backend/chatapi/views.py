@@ -12,10 +12,12 @@ import os
 from dotenv import load_dotenv
 from django.utils.decorators import method_decorator
 from .chatbot.chatbot import process_user_input
+import time
+import logging
+
 client = OpenAI()
 
 load_dotenv()
-
 
 @method_decorator(csrf_exempt, name='dispatch')
 class ChatBotView(APIView):
@@ -23,6 +25,7 @@ class ChatBotView(APIView):
         print('request.data1:', request.data)
         user_message = request.data.get('message')
         
+        # OpenAI API 호출 부분
         if request.method == 'POST':
             # openai.api_key = os.getenv('OPENAI_API_KEY')
             
@@ -33,10 +36,29 @@ class ChatBotView(APIView):
             #         {"role": "user", "content": user_message}
             #     ]
             # )
+            
             session_store = {}
             session_id = "test-session"
 
+            start_time = time.time()
+            
+            print(f"요청 받음: {request.data.get('message')}")
+            
+            # API 호출 전
+            pre_api_time = time.time()
+
             bot_response = process_user_input(user_message, session_store, session_id)
+
+            bot_response = bot_response.replace('. ', '.\n')  # 문장 끝에서 줄바꿈
+
+            # API 호출 후
+            post_api_time = time.time()
+            print("API 호출 시간: {:.2f}초".format(post_api_time - pre_api_time))
+                        
+            print("요청 받음:", request.data.get('message'))
+            
+            # 전체 처리 시간
+            print("전체 처리 시간: {:.2f}초".format(time.time() - start_time))
 
             # print('response---->',response.choices[0].message.content)
             # bot_response = response.choices[0].message.content
