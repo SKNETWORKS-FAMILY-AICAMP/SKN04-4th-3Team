@@ -70,7 +70,6 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 ![LangChain Badge](https://img.shields.io/badge/LangChain-000000?style=flat&logo=&logoColor=white)
 ![OpenAI Badge](https://img.shields.io/badge/OpenAI-412991?style=flat&logo=OpenAI&logoColor=white)
 ![PyPDFLoader Badge](https://img.shields.io/badge/PyPDFLoader-FFD43B?style=flat&logo=&logoColor=white)
-![Streamlit Badge](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=Streamlit&logoColor=white)
 ![Django Badge](https://img.shields.io/badge/Django-092E20?style=flat&logo=Django&logoColor=white)
 ![React Badge](https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white)
 
@@ -85,27 +84,6 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 <br>
 <br>
 
-## 📌 사용 방법
-
-프로젝트 디렉토리를 기준으로 `./data` 폴더가 필요합니다. `./data`에 내부 데이터로 활용하고자 하는 PDF를 넣으시면 됩니다.
-
-1. **벡터 DB 생성**
-
-   ```bash
-   python vector_db.py
-   ```
-
-   - **입력:** `data` 폴더에 있는 PDF 파일들
-   - **출력:** `chroma_db` 폴더 (벡터 DB 포함)
-
-2. **스트림릿 실행**
-
-   ```bash
-   streamlit run main.py
-   ```
-
-<br>
-<br>
 
 ## 📌 구현 사항
 
@@ -168,31 +146,6 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 
 ## 🖥️ 프로젝트 진행에서의 문제 발생과 해결
 
-### 1. 이전 대화 내용을 기억하지 못함
-
-- **문제:** 이전 대화 내용을 기억하지 못하여 대화의 연속성이 떨어짐
-- **해결:** `RunnableWithMessageHistory` 메모리를 사용하여 사용자와의 대화 맥락을 기억하도록 구현
-
-### 2. 보험 약관 간 내용의 유사성으로 인한 벡터 DB 혼선
-
-- **문제:** 다른 보험사의 동일한 보험 약관 간 내용의 유사성 때문에 벡터 DB에서 혼선 발생
-- **해결:** 찾는 보험의 종류를 선택하게 하고, 해당 보험의 약관에서만 탐색하도록 구현
-
-### 3. Streamlit에서 대화 UI 개선
-
-- **문제:** Streamlit 구현 과정에서, OpenAI의 ChatGPT UI처럼 대화가 아래로 스크롤되기를 원함
-- **해결:** `st.chat_message`를 통해 메시지를 순차적으로 표시되도록 하여 자동으로 위에서 아래로 스크롤 되도록 구현
-
-### 4. Streamlit 에서 아바타와 유저의 아이콘
-- 문제: 질문을 할 때 마다 유저와 아바타의 아이콘이 초기화되어 나타남
-- 해결: 유저와 아바타의 아이콘을 with문을 통해 아이콘 지속
-
-### 5. 할루시네이션 
-- 문제: 할루시네이션 발생
-- 해결: meta data를 통하여 출력에 제한을 적용했지만, 의도대로 답변하지 못하는 경우 발생
-
-<br>
-<br>
 
 
 
