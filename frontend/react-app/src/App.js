@@ -1,8 +1,19 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { ReactTyped } from "react-typed";
 import "./App.css";
+import InsuranLogo from './images/Insuran.png';
 
 const API_URL = `${window.location.protocol}//${window.location.host}/api/chat/`;
+
+const Header = () => {
+  return (
+    <div className="header">
+      <img src={InsuranLogo} alt="Insurance King Logo" className="logo" />
+      <p id="BannerLetter">Insurance King</p>
+      <img src={InsuranLogo} alt="Insurance King Logo" className="logo" />
+    </div>
+  );
+};
 
 const App = () => {
   const [messages, setMessages] = useState([]);
@@ -17,10 +28,6 @@ const App = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-
-  const formatMessageText = (text) => {
-    return text.replace(/(\d+\.)/g, '\n$1');
-  };
 
   const handleSendMessage = useCallback(async (e) => {
     e.preventDefault();
@@ -40,7 +47,7 @@ const App = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(API_URL,{
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +63,7 @@ const App = () => {
 
       const botMessage = { 
         id: Date.now() + 1, 
-        text: formatMessageText(data.bot_response), 
+        text: data.bot_response, 
         isUser: false 
       };
 
@@ -79,6 +86,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <Header />
       <div className="chat-container">
         <div className="main-content">
           <div className="messages-list">
