@@ -63,7 +63,8 @@ def build_vector_store():
         chroma_db.persist()
         
 def initialize_vector_store():
-    if not os.path.exists('./chroma_db'):
+    chroma_path = os.path.abspath('./chroma_db')
+    if not os.path.exists(chroma_path):
         build_vector_store()
     embeddings = OpenAIEmbeddings(model='text-embedding-3-small')
-    return Chroma(persist_directory='./chroma_db', embedding_function=embeddings)  # Chroma DB 로드
+    return Chroma(persist_directory=chroma_path, embedding_function=embeddings)  # Chroma DB 로드"
