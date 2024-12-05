@@ -79,20 +79,12 @@ def process_user_input(user_input, session_store, session_id):
     )
 
     # 모델 및 프롬프트 초기화
-    model = ChatOpenAI(model='gpt-4o-mini', temperature=1)
+    model = ChatOpenAI(model='gpt-4o-mini', temperature=0.3)
     prompt = ChatPromptTemplate.from_messages([
         ("system", prompts['system_prompt_1']),
         ('human', prompts['human_prompt_1']),
         ("ai", prompts['ai_prompt_1']),
-        ("system", prompts['system_prompt_2']),
-        ('human', prompts['human_prompt_2']),
-        ("ai", prompts['ai_prompt_2']),
-        ("system", prompts['system_prompt_3']),
-        ('human', prompts['human_prompt_3']),
-        ("ai", prompts['ai_prompt_3']),
-        ("system", prompts['system_prompt_4']),
-        ('human', prompts['human_prompt_4']),
-        ("ai", prompts['ai_prompt_4']),
+       
         MessagesPlaceholder(variable_name='history'),
         ('human', "{question}"),
     ])
