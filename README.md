@@ -2,15 +2,15 @@
 
 
 <p align="center">
-	<img src="https://i.pinimg.com/236x/d6/4e/97/d64e9765deca662e8fa07d2cfdb67f7c.jpg" width="195" height="195"/>
-	<img src="https://media.discordapp.net/attachments/1271398698596696117/1305792701567995945/KakaoTalk_20241112_161327174.jpg?ex=673451b8&is=67330038&hm=23dc35c56dc9b555b4f1b84d9aa45df4bc6f4a451583d80e43d77cc38d471008&=&format=webp&width=780&height=585" width="195" height="195"/>
-	<img src="https://i.pinimg.com/236x/d6/4e/97/d64e9765deca662e8fa07d2cfdb67f7c.jpg" width="195" height="195"/>
-	<img src="https://i.pinimg.com/236x/52/33/cf/5233cf1dfa7cb3ddeee3bb286c11f3f8.jpg" width="195" height="195"/>
+	<img src="./images/조로.png" width="195" height="195"/>
+	<img src="./images/쵸파.png" width="195" height="195"/>
+	<img src="./images/우솝.png" width="195" height="195"/>
+	<img src="./images/상디.png" width="195" height="195"/>
 </p>
 
 |  &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; 🐶 박화랑(팀장) &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 🐙고유림  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 🐻김문수  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |     &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 😺신원영  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;   | |
 |------------------------------------------|--------------------------------------|------------------------------------------|-----------------------------------|------------------------------------------|
-| **요구사항 정의서, 화면설계서, README** | **Frontend (React)** | **Backend(Django)** | **Backend(Django)** |
+| **요구사항 정의서, 화면설계서, README, CICD** | **Frontend (React)** | **Backend(Django)** | **Backend(Django), AWS** |
 
 <br>
 <br>
@@ -74,6 +74,8 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 ![React Badge](https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white)
 ![Postgres Badge](https://img.shields.io/badge/Postgresql-4169E1?style=flat&logo=Postgresql&logoColor=white)
 ![Docker Badge](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=white)
+![amazonec2 Badge](https://img.shields.io/badge/amazonec2-FF9900?style=flat&logo=amazonec2&logoColor=white)
+![nginx Badge](https://img.shields.io/badge/nginx-009639?style=flat&logo=nginx&logoColor=white)
 
 <br>
 
