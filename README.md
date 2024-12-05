@@ -2,10 +2,10 @@
 
 
 <p align="center">
-	<img src="./images/조로.png" width="195" height="195"/>
-	<img src="./images/쵸파.png" width="195" height="195"/>
-	<img src="./images/우솝.png" width="195" height="195"/>
-	<img src="./images/상디.png" width="195" height="195"/>
+	<img src="./images/검은수염.png" width="195" height="195"/>
+	<img src="./images/빅맘.png" width="195" height="195"/>
+	<img src="./images/샹크스.png" width="195" height="195"/>
+	<img src="./images/카이도.png" width="195" height="195"/>
 </p>
 
 |  &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; 🐶 박화랑(팀장) &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 🐙고유림  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 🐻김문수  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |     &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 😺신원영  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;   | |
@@ -27,6 +27,7 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 ## 📌 동기
 
 특정 보험 약관의 내용은 복잡하고 일반적인 정보가 아니기 때문에 기존 LLM에서 쉽게 찾아볼 수 없습니다. 이를 해결하기 위해 보험 약관을 벡터 DB로 저장하고, 내부 상담원이 쉽게 약관을 조회할 수 있는 시스템을 구축하였습니다.
+궁금한 점은 바로 물어볼 수 있게 웹페이지로 구축하였습니다.
 
 <br>
 <br>
@@ -51,15 +52,6 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 ## 📌 기능
 
 - **약관이 필요한 특정 상황에 대한 내용 설명 제공**
-
-<br>
-
-### 예시 | 
-
-**질문:** 캐롯사의 해외여행보험에서 보장하는 척추지압술이나 침술의 치료한도는 얼마입니까?
-
-- **일반 LLM의 답변:** 척추지압술에 대한 자세한 치료한도는 관련 약관을 찾아보시길 바랍니다.
-- **RAG을 활용한 LLM의 답변:** 척추지압술이나 침술 치료의 한도는 하나의 질병에 대하여 US $1.000입니다.
 
 <br>
 <br>
@@ -90,7 +82,6 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 - **Chroma**를 통해 데이터 벡터화
 
 <br>
-
 ### 2. RAG 시스템 구현
 
 - **LangChain** 기반으로 벡터 DB를 가져와 RAG 시스템 구현
@@ -98,9 +89,14 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 - **RunnableWithMessageHistory** 인스턴스를 사용해 대화 내용을 기억하도록 구현
 - 문서 기반의 신뢰성 있는 답변을 제공하기 위해 **temperature**를 1보다 낮게 설정
 
+### 3. Streamlit으로 만들었던 데모버전을 실제 웹페이지로 구현
+
+- Javascript의 라이브러리인 **React**를 화면을 구현했습니다.
+- 백엔드로는 파이썬 프레임워크인 **Django**를 사용했습니다.
+- 배포를 위해서 **AWS EC2**와 **Docker**를 사용했습니다.
+- CI/CD는 **AWS CODE DEPLOY**를 사용했습니다.
 
 ## 🖥️ 프로젝트 진행에서의 문제 발생과 해결
-
 
 
 
