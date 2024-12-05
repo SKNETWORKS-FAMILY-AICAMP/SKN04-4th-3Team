@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from "react";
-// import { ReactTyped } from "react-typed";
+import React, { useState, useCallback, useRef, useEffect } from "react";
+import { ReactTyped } from "react-typed";
 import "./App.css";
 
 const API_URL = `${window.location.protocol}//${window.location.host}/api/chat/`;
@@ -8,6 +8,19 @@ const App = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const formatMessageText = (text) => {
+    return text.replace(/(\d+\.)/g, '\n$1');
+  };
 
   const handleSendMessage = useCallback(async (e) => {
     e.preventDefault();
@@ -15,15 +28,14 @@ const App = () => {
     
     if (!trimmedInput) return;
 
-    // 사용자 메시지 추가
     const userMessage = { 
       id: Date.now(), 
       text: trimmedInput, 
       isUser: true 
     };
 
-    // 메시지 상태 업데이트
-    setMessages(prevMessages => [...prevMessages, userMessage]);
+    const newMessages = [...messages, userMessage];
+    setMessages(newMessages);
     setInput("");
     setIsLoading(true);
 
@@ -42,15 +54,13 @@ const App = () => {
 
       const data = await response.json();
 
-      // 봇 메시지 추가
       const botMessage = { 
         id: Date.now() + 1, 
-        text: data.bot_response, // 서버 응답의 bot_response 필드 사용
+        text: formatMessageText(data.bot_response), 
         isUser: false 
       };
 
-      // 메시지 상태 최종 업데이트
-      setMessages(prevMessages => [...prevMessages, botMessage]);
+      setMessages([...newMessages, botMessage]);
 
     } catch (error) {
       console.error("Error details:", error);
@@ -61,11 +71,11 @@ const App = () => {
         isUser: false 
       };
 
-      setMessages(prevMessages => [...prevMessages, errorMessage]);
+      setMessages([...newMessages, errorMessage]);
     } finally {
       setIsLoading(false);
     }
-  }, [input]);
+  }, [input, messages]);
 
   return (
     <div className="app">
@@ -82,12 +92,20 @@ const App = () => {
                     {message.isUser ? '👤' : '🤖'}
                   </div>
                   <div className="message-bubble">
-                    {message.text}
+                    {message.isTyping ? (
+                      <ReactTyped
+                        strings={[message.text]}
+                        typeSpeed={20}
+                        showCursor={false}
+                      />
+                    ) : (
+                      message.text
+                    )}
                   </div>
                 </div>
               </div>
             ))}
-            
+            <div ref={messagesEndRef} />
             {isLoading && (
               <div className="message-row assistant loading">
                 <div className="message-content">
@@ -105,7 +123,7 @@ const App = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="메시지를 입력하세요..."
+              placeholder="Send a message..."
               className="message-input"
               disabled={isLoading}
             />
