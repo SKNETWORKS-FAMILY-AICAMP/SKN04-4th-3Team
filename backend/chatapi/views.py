@@ -21,6 +21,14 @@ load_dotenv()
 
 @method_decorator(csrf_exempt, name='dispatch')
 class ChatBotView(APIView):
+    
+    # format_response 함수 추가
+    def format_response(self, text):
+        # 마크다운 볼드 표시와 줄바꿈 수정
+        for i in range(1, 6):
+            text = text.replace(f"{i}.\n**", f"{i}. ")
+        return text.replace("**", "")    
+    
     def post(self, request):
         print('request.data1:', request.data)
         user_message = request.data.get('message')
@@ -49,7 +57,8 @@ class ChatBotView(APIView):
 
             bot_response = process_user_input(user_message, session_store, session_id)
 
-            bot_response = bot_response.replace('. ', '.\n')  # 문장 끝에서 줄바꿈
+            # bot_response = bot_response.replace('. ', '.\n')  # 문장 끝에서 줄바꿈
+            bot_response = self.format_response(bot_response)
 
             # API 호출 후
             post_api_time = time.time()
@@ -66,3 +75,4 @@ class ChatBotView(APIView):
             chat_message = ChatMessage.objects.create(user_message=user_message, bot_response=bot_response)
             serializer = ChatMessageSerializer(chat_message)
         return Response(serializer.data)
+
