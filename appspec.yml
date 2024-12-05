@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-    - source: /docker-compose.yaml
+    - source: /docker-compose.yml
       destination: /home/ubuntu/SKN04-4th-3Team
 file_exists_behavior: OVERWRITE
 
