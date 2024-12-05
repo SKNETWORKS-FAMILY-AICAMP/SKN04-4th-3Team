@@ -2,15 +2,15 @@
 
 
 <p align="center">
-	<img src="https://i.pinimg.com/236x/d6/4e/97/d64e9765deca662e8fa07d2cfdb67f7c.jpg" width="195" height="195"/>
-	<img src="https://media.discordapp.net/attachments/1271398698596696117/1305792701567995945/KakaoTalk_20241112_161327174.jpg?ex=673451b8&is=67330038&hm=23dc35c56dc9b555b4f1b84d9aa45df4bc6f4a451583d80e43d77cc38d471008&=&format=webp&width=780&height=585" width="195" height="195"/>
-	<img src="https://i.pinimg.com/236x/d6/4e/97/d64e9765deca662e8fa07d2cfdb67f7c.jpg" width="195" height="195"/>
-	<img src="https://i.pinimg.com/236x/52/33/cf/5233cf1dfa7cb3ddeee3bb286c11f3f8.jpg" width="195" height="195"/>
+	<img src="./images/검은수염.png" width="195" height="195"/>
+	<img src="./images/빅맘.png" width="195" height="195"/>
+	<img src="./images/샹크스.png" width="195" height="195"/>
+	<img src="./images/카이도.png" width="195" height="195"/>
 </p>
 
 |  &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; 🐶 박화랑(팀장) &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 🐙고유림  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 🐻김문수  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;    |     &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp; 😺신원영  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;   | |
 |------------------------------------------|--------------------------------------|------------------------------------------|-----------------------------------|------------------------------------------|
-| **요구사항 정의서, 화면설계서, README** | **Frontend (React)** | **Backend(Django)** | **Backend(Django)** |
+| **요구사항 정의서, 화면설계서, README, CICD** | **Frontend (React)** | **Backend(Django)** | **Backend(Django), AWS** |
 
 <br>
 <br>
@@ -27,6 +27,7 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 ## 📌 동기
 
 특정 보험 약관의 내용은 복잡하고 일반적인 정보가 아니기 때문에 기존 LLM에서 쉽게 찾아볼 수 없습니다. 이를 해결하기 위해 보험 약관을 벡터 DB로 저장하고, 내부 상담원이 쉽게 약관을 조회할 수 있는 시스템을 구축하였습니다.
+궁금한 점은 바로 물어볼 수 있게 웹페이지로 구축하였습니다.
 
 <br>
 <br>
@@ -53,15 +54,6 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 - **약관이 필요한 특정 상황에 대한 내용 설명 제공**
 
 <br>
-
-### 예시 | 
-
-**질문:** 캐롯사의 해외여행보험에서 보장하는 척추지압술이나 침술의 치료한도는 얼마입니까?
-
-- **일반 LLM의 답변:** 척추지압술에 대한 자세한 치료한도는 관련 약관을 찾아보시길 바랍니다.
-- **RAG을 활용한 LLM의 답변:** 척추지압술이나 침술 치료의 한도는 하나의 질병에 대하여 US $1.000입니다.
-
-<br>
 <br>
 
 ## 🛠️ 기술 스택
@@ -74,6 +66,8 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 ![React Badge](https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white)
 ![Postgres Badge](https://img.shields.io/badge/Postgresql-4169E1?style=flat&logo=Postgresql&logoColor=white)
 ![Docker Badge](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=white)
+![amazonec2 Badge](https://img.shields.io/badge/amazonec2-FF9900?style=flat&logo=amazonec2&logoColor=white)
+![nginx Badge](https://img.shields.io/badge/nginx-009639?style=flat&logo=nginx&logoColor=white)
 
 <br>
 
@@ -88,7 +82,6 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 - **Chroma**를 통해 데이터 벡터화
 
 <br>
-
 ### 2. RAG 시스템 구현
 
 - **LangChain** 기반으로 벡터 DB를 가져와 RAG 시스템 구현
@@ -96,9 +89,14 @@ GPT-4o-mini 기반 **보험 약관 RAG 챗봇**입니다. 보험사의 내부 �
 - **RunnableWithMessageHistory** 인스턴스를 사용해 대화 내용을 기억하도록 구현
 - 문서 기반의 신뢰성 있는 답변을 제공하기 위해 **temperature**를 1보다 낮게 설정
 
+### 3. Streamlit으로 만들었던 데모버전을 실제 웹페이지로 구현
+
+- Javascript의 라이브러리인 **React**를 화면을 구현했습니다.
+- 백엔드로는 파이썬 프레임워크인 **Django**를 사용했습니다.
+- 배포를 위해서 **AWS EC2**와 **Docker**를 사용했습니다.
+- CI/CD는 **AWS CODE DEPLOY**를 사용했습니다.
 
 ## 🖥️ 프로젝트 진행에서의 문제 발생과 해결
-
 
 
 
